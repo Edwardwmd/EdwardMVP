@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply greendao plugin
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.wmd.mvp.edwardmvp"
+        minSdkVersion 18
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+greendao {
+    schemaVersion 1 //指定数据库schema版本号，迁移等操作会用到；
+    daoPackage 'com.wmd.mvp.edwardmvp.sql'//通过gradle插件生成的数据库相关文件的包名，默认为你的entity所在的包名；
+    targetGenDir 'src/main/java'//自定义生成数据库文件的目录，可以将生成的文件放到我们的java目录中，而不是build中，这样就不用额外的设置资源目录了。
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'me.yokeyword:fragmentation:1.1.8'
+    implementation 'com.android.support:appcompat-v7:26.+'
+    implementation 'com.android.support.constraint:constraint-layout:1.+'
+    implementation 'com.android.support:design:26.+'
+    //GLID图片解析
+    implementation 'com.github.bumptech.glide:glide:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+
+    //添加数据库
+    compile 'org.greenrobot:greendao:3.2.2'
+}
