@@ -50,4 +50,6 @@ public class MainActivity extends BaseActivity<IgView, IgPresenter<IgView>> impl
     public void showError(String errorMsg) {
         Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
     }
+
+    //尝试提交代码-------------》Git
 }
